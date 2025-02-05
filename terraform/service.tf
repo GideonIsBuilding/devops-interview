@@ -10,10 +10,10 @@ resource "kubernetes_service" "flask_app" {
         }
 
         port {
-        port        = 80             #Port the service exposes to the outside world
+        port        = 3000             #Port the service exposes to the outside world
         target_port = 3000           #Port the app is running on within the container
         }
 
-        type = "LoadBalancer"           #LoadBalancer for cloud services and ClusterIP for internal access
+        type = "NodePort"
         }
 }
