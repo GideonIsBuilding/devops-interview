@@ -7,5 +7,5 @@ variable "flask_app_image" {
 variable "replicas" {
     description = "Number of replicas for the Flask app"
     type        = number
-    default = "gideonisbuilding/flask-app:2
+    default     = 2
 }
