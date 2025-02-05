@@ -6,7 +6,7 @@ This is a simple Python web application using the **Flask** framework. The app w
 
 Before you start, make sure you have the following installed on your computer:
 
-- **Python** (version 3.6 or higher. We'd aadvise 3.10)
+- **Python** (version 3.6 or higher. We'd advise 3.10)
 - **pip** (Python package installer)
 
 You can check if Python is installed by running:
