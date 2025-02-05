@@ -25,12 +25,12 @@ jobs:
 
       - name: Build and Push Python App
         run: |
-          cd frontend
           docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.run_number }} .
           docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.run_number }}
 
       - name: Update Terraform Script
         run: |
+          cd terraform
           sed -i "s|default\s*=\s*[0-9]\+|default = \"${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.run_number }}|" variables.tf
           git config user.name "github-actions"
           git config user.email "actions@github.com"
