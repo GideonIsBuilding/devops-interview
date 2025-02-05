@@ -150,26 +150,26 @@ In the same directory as your `app.py`, create a `Dockerfile`. This file defines
 Here's an example `Dockerfile`:
 
 ```dockerfile
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Python Alpine image as a base
+FROM python:3.10-alpine
 
-# Set the working directory in the container
+# Working reference directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy requirements file into container
+COPY requirements.txt .
 
-# Install any needed dependencies specified in requirements.txt
+# Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 3000 available to the world outside this container
+# Copy rest of application code into container
+COPY . .
+
+# Expose port app runs on
 EXPOSE 3000
 
-# Define environment variable for Flask
-ENV FLASK_APP=app.py
-
-# Run the Flask app
-CMD ["python", "app.py"]
+# Run the application
+CMD ["gunicorn", "-b", "0.0.0.0:3000", "app:app"]
 ```
 
 #### b. **Create a `requirements.txt`**
@@ -270,8 +270,6 @@ To set secrets:
 3. Add the following secrets:
    - `DOCKER_USERNAME`: Your DockerHub username.
    - `DOCKER_PASSWORD`: Your DockerHub password (or token).
-
-You're right! I missed explicitly mentioning how to **trigger** the GitHub Actions workflow. Let me clarify that:
 
 ---
 
