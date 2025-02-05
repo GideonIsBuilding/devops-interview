@@ -31,7 +31,7 @@ jobs:
       - name: Update Terraform Script
         run: |
           cd terraform
-          sed -i "s|default\s*=\s*\"[a-zA-Z0-9\-_]\+/[a-zA-Z0-9\-_]\+:[a-zA-Z0-9\-_]*\"|default = \"${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.run_number }}\"|" variables.tf
+          sed -i "s|\(default\s*=\s*\"\)[a-zA-Z0-9\-_]\+/[a-zA-Z0-9\-_]\+:[a-zA-Z0-9\-_]*\(\"\)|\1${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.run_number }}\2|" variables.tf
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add variables.tf
